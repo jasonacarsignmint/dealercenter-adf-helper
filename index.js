@@ -235,7 +235,7 @@ app.post("/dealercenter-adf", async (req, res) => {
 
   const sftp = new SftpClient();
   const xml = buildAdfXml(data);
-  
+  console.log("DEBUG XML OUTPUT:\n", xml);
 
   const timestamp = new Date()
     .toISOString()
