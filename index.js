@@ -226,9 +226,11 @@ app.get("/", (req, res) => {
 
 // --------- MAIN ENDPOINT CALLED BY WIX ---------
 app.post("/dealercenter-adf", async (req, res) => {
+  // TEMP DEBUG: log raw body (use fake data only when testing)
+  console.log("RAW REQUEST BODY:", JSON.stringify(req.body));
+
   const data = req.body || {};
 
-  // Never log full data because it can contain SSN, etc.
   console.log(
     "Received credit app for:",
     (data.firstName || "") + " " + (data.lastName || "")
