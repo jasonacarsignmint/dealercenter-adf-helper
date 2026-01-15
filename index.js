@@ -226,15 +226,18 @@ app.get("/", (req, res) => {
 
 // --------- MAIN ENDPOINT CALLED BY WIX ---------
 app.post("/dealercenter-adf", async (req, res) => {
-  // TEMP DEBUG: log raw body (use fake data only when testing)
+  // TEMP DEBUG: log raw body so we can see what Wix is actually sending
   console.log("RAW REQUEST BODY:", JSON.stringify(req.body));
 
-  const data = req.body || {};
+  // Wix is sending { data: { firstName, lastName, ... } }
+  const payload = req.body || {};
+  const data = payload.data || payload;
 
   console.log(
     "Received credit app for:",
     (data.firstName || "") + " " + (data.lastName || "")
   );
+
 
   const sftp = new SftpClient();
   const xml = buildAdfXml(data);
