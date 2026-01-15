@@ -6,6 +6,7 @@ const nodemailer = require("nodemailer");
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // --------- CONFIG FROM ENV (we'll set these later in Render) ---------
 const SFTP_HOST = process.env.SFTP_HOST;
