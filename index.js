@@ -227,8 +227,7 @@ app.get("/", (req, res) => {
 // --------- MAIN ENDPOINT CALLED BY WIX ---------
 app.post("/dealercenter-adf", async (req, res) => {
   // TEMP DEBUG: log raw body so we can see what Wix is actually sending
-  console.log("RAW REQUEST BODY:", JSON.stringify(req.body));
-
+  
   // Wix is sending { data: { firstName, lastName, ... } }
   const payload = req.body || {};
   const data = payload.data || payload;
@@ -241,8 +240,7 @@ app.post("/dealercenter-adf", async (req, res) => {
 
   const sftp = new SftpClient();
   const xml = buildAdfXml(data);
-  console.log("DEBUG XML OUTPUT:\n", xml);
-
+  
   const timestamp = new Date()
     .toISOString()
     .replace(/[:.]/g, "")
